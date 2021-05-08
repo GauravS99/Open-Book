@@ -1,0 +1,22 @@
+body {
+	--main-bg: #6FB9D7;
+	--header-bg: #08202C;
+	--header-color: white;
+
+	background: var(--main-bg);
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	background: var(--header-bg);
+	color: var(--header-color);
+}
+
+.user-info {
+	margin: 0 5px;
+}
+
+.content {
+	margin: 5vh 20vw;
+}
