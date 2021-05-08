@@ -3,8 +3,11 @@ import { FC, useState, useEffect } from 'react';
 import Book from '../../models/Book';
 import BookService from '../../services/db/bookService';
 
-const BookList = (): JSX.Element => {
+const BookList: FC<{ viewUserList: boolean }> = ({ viewUserList }): JSX.Element => {
 	const [books, setBooks] = useState<Book[]>([]);
+
+	// Change this to actual user
+	const currentUser = 'Current User';
 
 	useEffect(() => {
 		fetchBooks();
@@ -18,7 +21,10 @@ const BookList = (): JSX.Element => {
 	return (
 		<div>
 			{
-				books.map((book, idx) => <BookItem key={idx} book={book} />)
+				books
+					.filter((book) => viewUserList ? book.author === currentUser : book)
+					.map((filteredBook, idx) => <BookItem key={idx} book={filteredBook} />)
+
 			}
 		</div>
 	);
