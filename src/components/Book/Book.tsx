@@ -3,10 +3,19 @@ import Book from '../../models/Book';
 
 import {  useParams } from 'react-router-dom';
 import BookService from '../../services/db/bookService';
+import BookDocumentView from './BookDocumentView';
+import BookActionHeader from './BookActionHeader';
 
 
 interface PropTypes {
 
+}
+
+export enum BookHeaderState {
+    DocumentView, 
+    EditView,
+    ContributionView,
+    None,
 }
 
 enum Tab {
@@ -51,6 +60,17 @@ const BookComponent = (props: PropTypes) : JSX.Element => {
                 </h6>
             </div>
             <hr/>
+            <div className="mt-3">
+                <div>
+                    <BookActionHeader 
+                    />
+                </div>
+                <div className="bg-color-5">
+                    {Tab.story &&
+                        <BookDocumentView book={book}/>
+                    }
+                </div>
+            </div>
         </div>
     );
 };
