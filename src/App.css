@@ -1,9 +1,7 @@
 body {
-	--main-bg: #6FB9D7;
-	--header-bg: #08202C;
-	--header-color: white;
+	--main-bg-color: #6FB9D7;
 
-	background: var(--main-bg);
+	background: var(--main-bg-color);
 }
 
 a {
@@ -13,8 +11,6 @@ a {
 .header {
 	display: flex;
 	justify-content: space-between;
-	background: var(--header-bg);
-	color: var(--header-color);
 }
 
 .user-info {
@@ -22,5 +18,54 @@ a {
 }
 
 .content {
-	margin: 5vh 20vw;
+	/* margin: 5vh 20vw; */
+	margin-top: 5vh;
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+}
+
+/* Colours */
+.colour-1 {
+	color: #08202C;
+}
+
+.colour-2 {
+	color: #0B4258;
+}
+
+.colour-3 {
+	color: #6FB9D7;
+}
+
+.colour-4 {
+	color: #E2D5C7;
+}
+
+.colour-5 {
+	color: #E2EAE3;
+}
+
+.bg-colour-1 {
+	background-color: #08202C;
+}
+
+.bg-colour-2 {
+	background-color: #0B4258;
+}
+
+.bg-colour-3 {
+	background-color: #6FB9D7;
+}
+
+.bg-colour-4 {
+	background-color: #E2D5C7;
+}
+
+.bg-colour-5 {
+	background-color: #E2EAE3;
+}
+
+.clickable {
+	cursor: pointer;
 }

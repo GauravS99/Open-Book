@@ -2,14 +2,18 @@ import './BookForm.css';
 import { FC, useState } from 'react';
 import { Genre } from '../../models/Book';
 import BookService from '../../services/db/bookService';
+import AuthService from '../../services/authService';
+import { AuthUser } from '../../models/User';
 
 const BookForm: FC<{ setModalFormOpen: React.Dispatch<React.SetStateAction<boolean>> }> = ({ setModalFormOpen }): JSX.Element => {
 	const [title, setTitle] = useState('');
 	const [genre, setGenre] = useState<Genre>(Genre.Fantasy);
 	const [premise, setPremise] = useState('');
 
+	const currentUser = AuthService.getLocalUser() as AuthUser;
+
 	const handleCreate = () => {
-		BookService.addBook({ title, author: 'Current User', genre, premise, text: '' });
+		BookService.addBook({ title, author: currentUser.uid, genre, premise, text: '' });
 	};
 
 	return (

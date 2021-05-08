@@ -1,36 +1,32 @@
 import './App.css';
+import React, {useState} from 'react';
 import {
-	BrowserRouter as Router,
+	Router,
 	Switch,
 	Route,
 	Link
 } from 'react-router-dom';
-
-import { getUsers } from './services/db/userService';
-import { useEffect } from 'react';
-
-import { AuthType } from './models/User';
-
-import Home from './pages/Home/Home';
-import UserForm from './pages/UserForm/UserForm';
 import Book from './components/Book/Book';
+import { AuthType, AuthUser } from './models/User';
+
+import { useEffect } from 'react';
+import Home from './pages/Home/Home';
+import BookEdit from './components/Book/BookEdit';
+
+import { createBrowserHistory } from 'history';
+import AuthService, { useFetchUser } from './services/authService';
+import UserForm from './pages/UserForm/UserForm';
+const history = createBrowserHistory();
 
 const App = (): JSX.Element => {
-	// Add appropriate DB calls when ready
-	useEffect(() => {
-		getUsers();
-	});
-
-	const user = {
-		name: 'Test',
-		points: 10
-	};
+	const user = useFetchUser();
+	console.log(user);
 
 	return (
-		<Router>
+		<Router history={history}>
 			<div>
 				<div className="h-100">
-					<div className="header py-2 px-3 text-navbar">
+					<div className="header bg-colour-1 colour-5 py-2 px-3 text-navbar">
 						<span>Open Book</span>
 						<div>
 							<button>
@@ -43,8 +39,8 @@ const App = (): JSX.Element => {
 									Sign In
 								</Link>
 							</button>
-							<span className="user-info">{user.name}</span>
-							<span className="user-info">{user.points}</span>
+							<span className="user-info">{user ? user.dbUser.username : ''}</span>
+							<span className="user-info">{user ? user.dbUser.points : ''}</span>
 						</div>
 					</div>
 				</div>
@@ -52,7 +48,7 @@ const App = (): JSX.Element => {
 				<div className="h-100">
 					<div className="content">
 						<Switch>
-							<Route exact path="/">
+						<Route exact path="/">
 								<Home />
 							</Route>
 							<Route path="/book/:id">
@@ -63,6 +59,12 @@ const App = (): JSX.Element => {
 							</Route>
 							<Route path="/signin">
 								<UserForm authType={AuthType.SignIn} />
+							</Route>
+							<Route path="/book/:id">
+								<Book />
+							</Route>
+							<Route path="/edit/:id">
+								<BookEdit />
 							</Route>
 						</Switch>
 					</div>

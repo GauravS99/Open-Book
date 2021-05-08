@@ -63,6 +63,7 @@ const BookComponent = (props: PropTypes) : JSX.Element => {
             <div className="mt-3">
                 <div>
                     <BookActionHeader 
+                        state={BookHeaderState.ContributionView}
                     />
                 </div>
                 <div className="bg-color-5">

@@ -1,5 +1,6 @@
+// DB model
 interface User {
-	name: string;
+	username: string;
 	points: number;
 }
 
@@ -8,4 +9,11 @@ export enum AuthType {
 	SignIn = 'Sign In'
 }
 
+export interface AuthUser {
+	uid: string;
+	email: string;
+	dbUser: User;
+}
+
 export default User;
+
