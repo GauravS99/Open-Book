@@ -2,6 +2,8 @@ interface Book {
 	title: string;
 	author: string;
 	genre: Genre;
+	premise: string;
+	text: string;
 }
 
 export enum Genre {

@@ -1,18 +1,22 @@
 import './BookList.css';
-import { FC } from 'react';
-import Book, { Genre } from '../../models/Book';
+import { FC, useState, useEffect } from 'react';
+import Book from '../../models/Book';
+import BookService from '../../services/db/bookService';
 
 const BookList = (): JSX.Element => {
-	const books = [
-		{
-			title: 'Mistborn',
-			author: 'Brandon Sanderson',
-			genre: Genre.Fantasy
-		}
-	];
+	const [books, setBooks] = useState<Book[]>([]);
+
+	useEffect(() => {
+		fetchBooks();
+	});
+
+	const fetchBooks = async () => {
+		const result = await BookService.getBooks();
+		setBooks(result);
+	};
 
 	return (
-		<div className="d-flex justify-content-center booklist">
+		<div>
 			{
 				books.map((book, idx) => <BookItem key={idx} book={book} />)
 			}
