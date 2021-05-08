@@ -6,8 +6,9 @@ import {
 } from 'react-router-dom';
 
 import { getUsers } from './services/db/userService';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Home from './pages/Home/Home';
+import Book from './components/Book/Book';
 
 const App = (): JSX.Element => {
 	// Add appropriate DB calls when ready
@@ -38,6 +39,9 @@ const App = (): JSX.Element => {
 						<Switch>
 							<Route exact path="/">
 								<Home />
+							</Route>
+							<Route path="/book/:id">
+								<Book/>
 							</Route>
 						</Switch>
 					</div>
