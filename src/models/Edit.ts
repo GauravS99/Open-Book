@@ -1,7 +1,7 @@
 import Book from './Book';
 import User from './User';
 
-export interface Edit {
+interface Edit {
 	author: User;
 	book: Book;
 	replace: string;
@@ -9,3 +9,5 @@ export interface Edit {
 	previous_story: string;
 	new_story: string;
 }
+
+export default Edit;
