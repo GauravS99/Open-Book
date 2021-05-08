@@ -2,3 +2,18 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.form-modal {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	height: max-content;
+	max-height: 75%;
+	width: 800px;
+	max-width: 80%;
+	border: 1px solid black;
+	background: black;
+}
