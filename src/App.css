@@ -6,6 +6,10 @@ body {
 	background: var(--main-bg);
 }
 
+a {
+	text-decoration: none;
+}
+
 .header {
 	display: flex;
 	justify-content: space-between;
