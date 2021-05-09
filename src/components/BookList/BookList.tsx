@@ -37,7 +37,7 @@ const BookItem: FC<{ book: Book }> = ({ book }) => {
 		<Link to={`/book/${book.id}`}>
 			<div className="book-item">
 				<h5 className="card-title">{book.title}</h5>
-				<p className="card-text">{book.author.uid}</p>
+				<p className="card-text">{book.author.username}</p>
 				<p className="card-text premise">{book.premise}</p>
 				<span className="card-text genre-tag">{book.genre}</span>
 			</div>

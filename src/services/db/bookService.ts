@@ -12,6 +12,23 @@ class BookService {
 			return data;
 		});
 
+		if(result){
+			const promises = [];
+			for(let i = 0; i < result.length; i++){
+				const book = result[i];
+				promises.push(db.collection('users').doc(book.author.id).get());
+			}
+
+			await Promise.all(promises);
+
+			for(let i = 0; i < result.length; i++){
+				const book = result[i];
+				const author = (await promises[i]).data();
+				// @ts-ignore
+				book.author.username = author.username;
+			}
+		}
+	
 		return result;
 	};
 
