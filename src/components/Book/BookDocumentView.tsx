@@ -9,12 +9,8 @@ import BookActionHeader, { BookHeaderAction, BookHeaderState } from './BookActio
 
 interface PropTypes {
     book: Book;
-	book: Book | null;
 }
 
-const BookDocumentView = (props: PropTypes) : JSX.Element => {
-    const {book} = props;
-    const bookText = book.text;
 const BookDocumentView = (props: PropTypes): JSX.Element => {
 	const { book } = props;
 

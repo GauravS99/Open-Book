@@ -40,6 +40,10 @@ const BookComponent = (props: PropTypes): JSX.Element => {
 
 	const emphasis = 'selected-tab';
 
+	if(!book){
+		return <div></div>;
+	}
+
 	console.log(tab);
 	return (
 		<div className="content colour-4 h-100 p-3 rounded">
