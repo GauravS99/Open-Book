@@ -31,7 +31,6 @@ const App = (): JSX.Element => {
 					<div className="header py-2 px-3 text-navbar">
 						<Link to="/" className="title">
 							<img src={bookImg} className="open-book-img" />
-							{' '}
 							OpenBook
 						</Link>
 						<div>
