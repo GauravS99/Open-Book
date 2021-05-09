@@ -23,7 +23,7 @@ a {
 
 .open-book-img {
 	height: 50px;
-	/* max-height: 100%; */
+	margin-right: 7px;
 }
 
 a.title:hover {
