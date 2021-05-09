@@ -21,6 +21,10 @@ a {
 	color: var(--main-text-color);
 }
 
+a.title:hover {
+	color: var(--main-accent);
+}
+
 .auth-btn {
 	margin: 0 5px;
 	border-radius: 3px;
