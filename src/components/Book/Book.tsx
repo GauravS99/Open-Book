@@ -6,6 +6,7 @@ import BookActionHeader, { BookHeaderAction } from './BookActionHeader';
 import BookDocumentView from './BookDocumentView';
 import { useParams } from 'react-router-dom';
 import BookEditList from './BookEditList';
+import BookContributionsList from './BookContributionsList';
 
 interface PropTypes {
 
@@ -52,22 +53,27 @@ const BookComponent = (props: PropTypes): JSX.Element => {
 				<h6 className={`me-3 d-inline tab ${tab === Tab.contributions ? emphasis : ''}`} onClick={() => setTab(Tab.contributions)}>
 					Contributions
                 </h6>
-			</div>
-			<hr />
-			<div className="mt-3">
-				<div className="bg-color-5">
-					{tab === Tab.story &&
-						<BookDocumentView book={book} />
-					}
-				</div>
+            </div>
+            <hr/>
+            <div className="mt-3">
+                <div className="bg-color-5">
+                    {tab === Tab.story &&
+                        <BookDocumentView book={book}/>
+                    }
+                </div>
+                <div>
+                    {tab === Tab.edits &&
+                        <BookEditList book={book}/>
+                    }
+                </div>
 				<div>
-					{tab === Tab.edits &&
-						<BookEditList book={book} />
-					}
-				</div>
-			</div>
-		</div>
-	);
+                    {tab === Tab.contributions &&
+                        <BookContributionsList book={book}/>
+                    }
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default BookComponent;

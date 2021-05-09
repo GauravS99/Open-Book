@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Book from '../../models/Book';
 
 interface PropTypes {
-    book: Book | null;
+    book: Book;
 }
 
 const BookEdits = (props: PropTypes) : JSX.Element => {

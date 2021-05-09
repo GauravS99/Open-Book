@@ -13,7 +13,6 @@ export enum BookHeaderState {
 	None,
 }
 
-
 interface PropTypes {
 	state: BookHeaderState;
 	params?: {
@@ -24,7 +23,6 @@ interface PropTypes {
 	// react-router
 	// history: any;
 }
-
 
 export enum BookHeaderAction {
 	Edit = 'Edit',

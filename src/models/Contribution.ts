@@ -13,6 +13,7 @@ export default interface Contribution {
 	author: User;
     book: Book;
     text: string;
+    votes: number;
 }
 
 

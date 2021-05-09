@@ -1,4 +1,5 @@
 import Book, {BookProposal} from '../../models/Book';
+import Contribution from '../../models/Contribution';
 import { db } from '../firebaseConfig';
 
 class BookService {
@@ -29,6 +30,10 @@ class BookService {
 			premise: book.premise,
 			text: book.text,
 		});
+	}
+
+	static updateBook = async (bookId: string, update: any) => {
+		return await db.collection('books').doc(bookId).update(update);
 	}
 }
 

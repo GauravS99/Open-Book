@@ -9,7 +9,7 @@ import Book from './components/Book/Book';
 import UserForm from './components/UserForm/UserForm';
 import { AuthType, AuthUser } from './models/User';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Home from './pages/Home/Home';
 import BookEdit from './components/Book/BookEdit';
 
@@ -17,6 +17,7 @@ import { createBrowserHistory } from 'history';
 import AuthService, { useFetchUser, signOutUser } from './services/authService';
 
 import bookImg from './assets/open-book.png';
+import BookContribution from './components/Book/BookContribution';
 
 const history = createBrowserHistory();
 
@@ -77,6 +78,9 @@ const App = (): JSX.Element => {
 							</Route>
 							<Route path="/edit/:id">
 								<BookEdit />
+							</Route>
+							<Route path="/contribution/:id">
+								<BookContribution />
 							</Route>
 						</Switch>
 					</div>
