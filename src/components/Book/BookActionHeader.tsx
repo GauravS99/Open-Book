@@ -44,7 +44,7 @@ const BookActionHeader = (props: PropTypes): JSX.Element => {
 	return (
 		<div className="p-2 d-flex action-header">
 			<button className="btn btn-light" onClick={onClickBack}> Back </button>
-			<div className="d-flex w-100 justify-content-end">
+			<div className="d-flex w-100 justify-content-end align-items-center">
 				{
 					state === BookHeaderState.DocumentView &&
 					<>
@@ -66,16 +66,21 @@ const BookActionHeader = (props: PropTypes): JSX.Element => {
 					</>
 				}
                 {
-					state === BookHeaderState.ContributionView && (
-                    !window.localStorage.getItem(`contribution-${params.contributionId}`) ?
+					state === BookHeaderState.ContributionView && 
+					
 					<>
-						<button className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Vote </button>
+						<div className="d-inline-block me-3">{params.contributionVotes} {params.contributionVotes === 1 ? 'Vote' : 'Votes'}</div>
+						{
+						!window.localStorage.getItem(`contribution-${params.contributionId}`) ?
+						<>
+							<button className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Vote </button>
+						</>
+						:
+						<>
+							<button disabled className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Voted </button>
+						</>
+						}
 					</>
-                    :
-                    <>
-						<button disabled className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Voted </button>
-					</>
-                    )
 				}
 			</div>
 		</div>
