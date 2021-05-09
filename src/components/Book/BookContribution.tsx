@@ -73,6 +73,20 @@ const BookContribution = (props: PropTypes): JSX.Element => {
 		}
 	};
 
+	let bookTextCopy = '';
+	if(contribution.text.length !== 0){
+		bookTextCopy = contribution.text.charAt(0);
+		let prev_character = contribution.text.charAt(0);
+		for(let i = 1; i < contribution.text.length; i++){
+			const current_character = contribution.text.charAt(i);
+			if(!(current_character === '\n' && prev_character === '\n')){
+				bookTextCopy += current_character;
+			}
+			
+			prev_character = current_character;
+		}
+	}
+
 	return (
 		<div className="content colour-4 h-100 rounded pb-3">
 			<div className='px-3 pt-3'>
@@ -90,7 +104,7 @@ const BookContribution = (props: PropTypes): JSX.Element => {
 					</div>
 					<div className="col-9">
 						<div>
-							{contribution.text}
+							{bookTextCopy.split('\n').map((text, index) => <div key={index}>{text}</div>)}
 						</div>
 					</div>
 				</div>
