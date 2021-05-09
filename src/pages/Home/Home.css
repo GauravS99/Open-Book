@@ -11,6 +11,12 @@
 .btn-primary:hover {
 	background: var(--main-accent);
 	filter: brightness(90%);
+	outline: none;
+}
+
+.btn-primary:focus {
+	box-shadow: none;
+	background: var(--main-accent);
 }
 
 .form-modal {

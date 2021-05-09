@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
 			<div>
 				<div className="h-100">
 					<div className="header py-2 px-3 text-navbar">
-						<span className="title">Open Book</span>
+						<Link to="/" className="title">Open Book</Link>
 						<div>
 							<button className="auth-btn signup-btn">
 								<Link to="/signup">
