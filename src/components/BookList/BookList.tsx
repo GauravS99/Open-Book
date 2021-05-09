@@ -1,4 +1,5 @@
 import './BookList.css';
+import { Link } from 'react-router-dom';
 import { FC, useState, useEffect } from 'react';
 import Book from '../../models/Book';
 import BookService from '../../services/db/bookService';
@@ -33,12 +34,14 @@ const BookList: FC<{ viewUserList: boolean }> = ({ viewUserList }): JSX.Element 
 
 const BookItem: FC<{ book: Book }> = ({ book }) => {
 	return (
-		<div className="book-item">
-			<h5 className="card-title">{book.title}</h5>
-			<p className="card-text">{book.author.uid}</p>
-			<p className="card-text premise">{book.premise}</p>
-			<span className="card-text genre-tag">{book.genre}</span>
-		</div>
+		<Link to={`/book/${book.id}`}>
+			<div className="book-item">
+				<h5 className="card-title">{book.title}</h5>
+				<p className="card-text">{book.author.uid}</p>
+				<p className="card-text premise">{book.premise}</p>
+				<span className="card-text genre-tag">{book.genre}</span>
+			</div>
+		</Link>
 	);
 };
 
