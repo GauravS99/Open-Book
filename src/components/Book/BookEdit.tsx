@@ -5,8 +5,7 @@ import diffview from '../../jsdifflib/diffview';
 import '../../jsdifflib/diffview.css';
 import Edit from '../../models/Edit';
 import EditService from '../../services/db/editService';
-import { BookHeaderState } from './Book';
-import BookActionHeader, { } from './BookActionHeader';
+import BookActionHeader, { BookHeaderAction, BookHeaderState } from './BookActionHeader';
 
 interface PropTypes {
     
@@ -20,7 +19,7 @@ const useFetchEdit = (editId: string): Edit | undefined => {
 		setEdit(edit);
 	};
 
-	useEffect(() => { fetchEdit(); });
+	useEffect(() => { fetchEdit(); }, []);
 
 	return edit;
 };
@@ -59,10 +58,16 @@ const BookEdit = (props: PropTypes) : JSX.Element => {
         }
     }, [edit]);
 
+	const onHeaderAction = (action: BookHeaderAction) => {
+        if(action === BookHeaderAction.Edit){
+            return;
+        }
+    };
+
     return (
         <div className="content bg-colour-2 colour-4 h-100 p-3 rounded">
             <div>
-                <BookActionHeader state={BookHeaderState.EditView} />
+                <BookActionHeader state={BookHeaderState.EditView} onAction={onHeaderAction} />
             </div>
             <div className="bg-color-5">
                 <div id="diffOutput"/>

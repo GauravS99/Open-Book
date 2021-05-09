@@ -1,6 +1,17 @@
+import User from './User';
+
 interface Book {
+	id: string;
 	title: string;
-	author: string;
+	author: User;
+	genre: Genre;
+	premise: string;
+	text: string;
+}
+
+export interface BookProposal {
+	title: string;
+	authorId: string;
 	genre: Genre;
 	premise: string;
 	text: string;

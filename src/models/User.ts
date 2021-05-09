@@ -1,5 +1,6 @@
 // DB model
 interface User {
+	uid ?: string;
 	username: string;
 	points: number;
 }

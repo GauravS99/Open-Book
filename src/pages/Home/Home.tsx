@@ -1,7 +1,7 @@
 import './Home.css';
-import BookList from '../../components/BookList/BookList';
-import Modal from 'react-modal';
 import { useState } from 'react';
+import Modal from 'react-modal';
+import BookList from '../../components/BookList/BookList';
 import BookForm from '../../components/BookForm/BookForm';
 
 const Home = (): JSX.Element => {
@@ -30,6 +30,7 @@ const Home = (): JSX.Element => {
 			>
 				<BookForm setModalFormOpen={setFormModalOpen} />
 			</Modal>
+
 		</div>
 	);
 };

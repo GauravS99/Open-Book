@@ -12,7 +12,8 @@ export default class UserService {
 
 	static getUser = async (uid: string) => {
 		const userRef = await db.collection('users').doc(uid).get();
-		const result = userRef.data() as User;
+		const result = userRef.data() as any;
+		result.uid = uid;
 		return result;
 	};
 

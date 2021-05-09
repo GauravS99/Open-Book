@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {
 	Router,
 	Switch,
@@ -7,6 +7,7 @@ import {
 	Link
 } from 'react-router-dom';
 import Book from './components/Book/Book';
+import UserForm from './components/UserForm/UserForm';
 import { AuthType, AuthUser } from './models/User';
 
 import { useEffect } from 'react';
@@ -15,7 +16,6 @@ import BookEdit from './components/Book/BookEdit';
 
 import { createBrowserHistory } from 'history';
 import AuthService, { useFetchUser } from './services/authService';
-import UserForm from './pages/UserForm/UserForm';
 const history = createBrowserHistory();
 
 const App = (): JSX.Element => {
@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
 			<div>
 				<div className="h-100">
 					<div className="header bg-colour-1 colour-5 py-2 px-3 text-navbar">
-						<span>Open Book</span>
+						<span>OpenBook</span>
 						<div>
 							<button>
 								<Link to="/signup">
@@ -48,7 +48,7 @@ const App = (): JSX.Element => {
 				<div className="h-100">
 					<div className="content">
 						<Switch>
-						<Route exact path="/">
+							<Route exact path="/">
 								<Home />
 							</Route>
 							<Route path="/book/:id">
@@ -70,7 +70,7 @@ const App = (): JSX.Element => {
 					</div>
 				</div >
 			</div>
-		</Router>
+		</Router >
 	);
 };
 
