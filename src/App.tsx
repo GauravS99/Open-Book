@@ -32,7 +32,7 @@ const App = (): JSX.Element => {
 						<Link to="/" className="title">
 							<img src={bookImg} className="open-book-img" />
 							{' '}
-							Open Book
+							OpenBook
 						</Link>
 						<div>
 							<button className="auth-btn signup-btn">
@@ -65,9 +65,6 @@ const App = (): JSX.Element => {
 							</Route>
 							<Route path="/signin">
 								<UserForm authType={AuthType.SignIn} />
-							</Route>
-							<Route path="/book/:id">
-								<Book />
 							</Route>
 							<Route path="/edit/:id">
 								<BookEdit />
