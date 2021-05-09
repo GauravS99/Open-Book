@@ -20,5 +20,8 @@ export default class UserService {
 	static addUser = async (id: string, user: User) : Promise<void> => {
 		await db.collection('users').doc(id).set(user);
 	}
-}
 
+	static updateUser = async (id: string, update: any) : Promise<void> => {
+		const result = await db.collection('users').doc(id).update(update);
+	}
+}

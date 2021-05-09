@@ -68,6 +68,12 @@ const BookActionHeader = (props: PropTypes): JSX.Element => {
 						<button className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Accept)}> Accept </button>
 					</>
 				}
+                {
+					state === BookHeaderState.ContributionView &&
+					<>
+						<button className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Vote </button>
+					</>
+				}
 			</div>
 		</div>
 	);

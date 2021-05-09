@@ -3,6 +3,7 @@ import Contribution, { ContributionProposal } from '../../models/Contribution';
 import User from '../../models/User';
 import { db } from '../firebaseConfig';
 import BookService from './bookService';
+import UserService from './userService';
 
 
 const collection = 'contributions';
@@ -50,6 +51,11 @@ export default class ContributionService {
 		let text = book.text;
 		text += contribution.text;
 		await BookService.updateBook(book.id, {text});
+
+		// @ts-ignore
+		const user = await UserService.getUser(contribution.author.id) as User;
+		// @ts-ignore
+		await UserService.updateUser(contribution.author.id, { points: user.points + 100});
 
 		const bookRef = db.collection('books')
 			.doc(book.id);
