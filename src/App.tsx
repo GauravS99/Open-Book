@@ -15,6 +15,9 @@ import BookEdit from './components/Book/BookEdit';
 
 import { createBrowserHistory } from 'history';
 import AuthService, { useFetchUser } from './services/authService';
+
+import bookImg from './assets/open-book.png';
+
 const history = createBrowserHistory();
 
 const App = (): JSX.Element => {
@@ -26,7 +29,11 @@ const App = (): JSX.Element => {
 			<div>
 				<div className="h-100">
 					<div className="header py-2 px-3 text-navbar">
-						<Link to="/" className="title">Open Book</Link>
+						<Link to="/" className="title">
+							<img src={bookImg} className="open-book-img" />
+							{' '}
+							Open Book
+						</Link>
 						<div>
 							<button className="auth-btn signup-btn">
 								<Link to="/signup">
