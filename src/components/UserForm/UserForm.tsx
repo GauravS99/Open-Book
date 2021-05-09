@@ -13,13 +13,18 @@ const UserForm: FC<{ authType: AuthType }> = ({ authType }): JSX.Element => {
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
 
+
+	const goBack = () => {
+		history.goBack();
+	};
+
 	const handleSignUp = async () => {
 		await signUpUser(email, password, username);
-		history.push('/');
+		goBack();
 	};
 	const handleSignIn = async () => { 
 		await signInUser(email, password);
-		history.push('/');
+		goBack();
 	};
 
 	return (
@@ -38,7 +43,7 @@ const UserForm: FC<{ authType: AuthType }> = ({ authType }): JSX.Element => {
 					}
 				</div>
 				<div className="form-btn-container">
-					<button className="form-btn btn btn-secondary" onClick={() => history.push('/')}>
+					<button className="form-btn btn btn-secondary" onClick={() => goBack()}>
 						Cancel
 					</button>
 					<button
