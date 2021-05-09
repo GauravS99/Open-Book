@@ -16,12 +16,16 @@ export const signUpUser = async (email: string, password: string, username: stri
 	}
 
 	console.log('user credentials', cred);
+
+	return cred;
 };
 
 export const signInUser = async (email: string, password: string) => {
 	await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 	const cred = await auth.signInWithEmailAndPassword(email, password);
 	console.log('user credentials', cred.user);
+
+	return cred;
 };
 
 export const signOutUser = async () => {

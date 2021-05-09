@@ -58,8 +58,7 @@ const BookComponent = (props: PropTypes): JSX.Element => {
 					Contributions
                 </h6>
             </div>
-            <hr/>
-            <div className="mt-3">
+            <div className="mt-4">
                 <div className="bg-color-5">
                     {tab === Tab.story &&
                         <BookDocumentView book={book}/>
