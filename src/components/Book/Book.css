@@ -14,7 +14,6 @@
 
 .selected-tab {
 	color: var(--main-accent);
-	box-shadow: 0px 2px var(--main-accent);
 }
 
 .tab:last-child {

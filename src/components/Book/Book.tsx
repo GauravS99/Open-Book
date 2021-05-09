@@ -51,9 +51,9 @@ const BookComponent = (props: PropTypes): JSX.Element => {
 				<h6 className={`d-inline-block me-3 tab ${tab === Tab.story ? emphasis : ''}`} onClick={() => setTab(Tab.story)}>
 					Story
                 </h6>
-				<h6 className={`me-3 d-inline tab ${tab === Tab.edits ? emphasis : ''}`} onClick={() => setTab(Tab.edits)}>
+				{/* <h6 className={`me-3 d-inline tab ${tab === Tab.edits ? emphasis : ''}`} onClick={() => setTab(Tab.edits)}>
 					Edits
-                </h6>
+                </h6> */}
 				<h6 className={`me-3 d-inline tab ${tab === Tab.contributions ? emphasis : ''}`} onClick={() => setTab(Tab.contributions)}>
 					Contributions
                 </h6>
