@@ -18,24 +18,41 @@ const BookDocumentView = (props: PropTypes): JSX.Element => {
 		return <div></div>;
 	}
 
-	const bookText = book.text;
+	let bookTextCopy = '';
+	if(book.text.length !== 0){
+		bookTextCopy = book.text.charAt(0);
+		let prev_character = book.text.charAt(0);
+		for(let i = 1; i < book.text.length; i++){
+			const current_character = book.text.charAt(i);
+			if(!(current_character === '\n' && prev_character === '\n')){
+				bookTextCopy += current_character;
+			}
+			
+			prev_character = current_character;
+		}
+	}
+
+	const bookTextEditable = book.text.slice();
 
 	const [state, setState] = useState(BookHeaderState.DocumentView);
 	const [editing, setEditing] = useState(false);
-	const [text, setText] = useState(bookText);
 
 	const onSubmitEdit = async () => {
 		const editableDiv = document.getElementById('editableBook');
 		if (editableDiv) {
-			const value = editableDiv.textContent as string;
+			const value = editableDiv.innerText as string;
 
 			// awdfawd
 			// awdfawdaw
-			const addition = value.substring(bookText.length);
+			const addition = value.substring(bookTextCopy.length);
 
 			// ASSUME all edits are contributions
 
 			const currentUser = AuthService.getLocalUser() as AuthUser;
+
+			console.log(bookTextCopy);
+			console.log(value);
+			console.log(addition);
 
 			await ContributionService.addContribution({
 				bookId: book.id as string,
@@ -46,7 +63,7 @@ const BookDocumentView = (props: PropTypes): JSX.Element => {
 			setState(BookHeaderState.DocumentView);
 			setEditing(false);
 
-			editableDiv.textContent = bookText;
+			// editableDiv.textContent = bookText;
 			// TODO Thivagar we need to create a EditProposal object and send it to a 
 			// the EditService to submit the edit request to DB it should have the
 			// ids of the current user and book, and in EditService we need to add these
@@ -90,10 +107,16 @@ const BookDocumentView = (props: PropTypes): JSX.Element => {
 					<h4>{book.title}</h4>
 				</div>
 				{!editing ?
-					<div className="p-2 rounded">{bookText}</div>
+					<div className="p-2 rounded">
+						{
+							book.text.split('\n').map((text, index) => <div key={index}>{text}</div>)
+						}
+					</div>
 					:
-					<div id="editableBook" className="border border-dark p-2 rounded" contentEditable="true">
-						{text}
+					<div id="editableBook" className="border border-dark p-2 rounded" style={{minHeight: 40}} contentEditable="true">
+						{
+							bookTextEditable.split('\n').map((text, index) => <div key={index}>{text}</div>)
+						}
 					</div>
 				}
 			</div>
