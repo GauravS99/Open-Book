@@ -1,6 +1,16 @@
 .btn-container {
 	display: flex;
-	justify-content: space-between;
+}
+
+.btn-primary {
+	margin-right: 5px;
+	border: none;
+	background: var(--main-accent);
+}
+
+.btn-primary:hover {
+	background: var(--main-accent);
+	filter: brightness(90%);
 }
 
 .form-modal {
@@ -14,10 +24,9 @@
 	max-height: 75%;
 	width: 800px;
 	max-width: 80%;
-	border: 1px solid black;
 	background: black;
 }
 
-.overlay {
-	color: black;
+.form-modal:focus {
+	outline: none;
 }

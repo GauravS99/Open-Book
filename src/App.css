@@ -1,5 +1,7 @@
 body {
-	--main-bg-color: #6FB9D7;
+	--main-bg-color: rgb(239, 238, 232);
+	--main-text-color: (65, 45, 43);
+	--main-accent: rgb(189, 95, 98);
 
 	background: var(--main-bg-color);
 }
@@ -11,6 +13,49 @@ a {
 .header {
 	display: flex;
 	justify-content: space-between;
+}
+
+.title {
+	font-family: serif;
+	font-size: 30px;
+	color: var(--main-text-color);
+}
+
+.auth-btn {
+	margin: 0 5px;
+	border-radius: 3px;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+/* Sign-up Button */
+.signup-btn {
+	background: none;
+}
+
+.signup-btn:hover {
+	background: black;
+}
+
+.signup-btn a {
+	color: black;
+}
+
+.signup-btn:hover a {
+	color: var(--main-bg-color);
+}
+
+/* Sign-in Button */
+.signin-btn {
+	background: black;
+}
+
+.signin-btn:hover {
+	filter: brightness(90%);
+}
+
+.signin-btn a {
+	color: var(--main-bg-color);
 }
 
 .user-info {

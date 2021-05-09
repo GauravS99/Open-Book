@@ -1,5 +1,6 @@
-.booklist {
+.book-list {
 	width: 100%;
+	padding: 5px;
 }
 
 .book-item {
@@ -7,4 +8,34 @@
 	background: white;
 	padding: 10px;
 	margin-top: 10px;
+	border-radius: 3px;
+	border: 1px solid black;
+}
+
+.book-item:hover {
+	cursor: pointer;
+	background: var(--main-accent);
+	transition: background 300ms, border 300ms;
+}
+
+.card-title,
+.author {
+	margin: 0;
+}
+
+.premise {
+	margin: 10px 0;
+}
+
+.genre-tag {
+	border-radius: 3px;
+	background: black;
+	color: white;
+	padding: 4px;
+
+	transition: color 300ms;
+}
+
+.book-item:hover .genre-tag {
+	color: var(--main-accent);
 }

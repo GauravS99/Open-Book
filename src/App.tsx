@@ -1,5 +1,4 @@
 import './App.css';
-import {useState} from 'react';
 import {
 	Router,
 	Switch,
@@ -26,15 +25,15 @@ const App = (): JSX.Element => {
 		<Router history={history}>
 			<div>
 				<div className="h-100">
-					<div className="header bg-colour-1 colour-5 py-2 px-3 text-navbar">
-						<span>OpenBook</span>
+					<div className="header py-2 px-3 text-navbar">
+						<span className="title">Open Book</span>
 						<div>
-							<button>
+							<button className="auth-btn signup-btn">
 								<Link to="/signup">
 									Sign Up
 								</Link>
 							</button>
-							<button>
+							<button className="auth-btn signin-btn">
 								<Link to="/signin">
 									Sign In
 								</Link>
