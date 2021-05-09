@@ -15,9 +15,7 @@ export enum BookHeaderState {
 
 interface PropTypes {
 	state: BookHeaderState;
-	params?: {
-		book?: Book;
-	};
+	params?: any;
 	onAction: (action: BookHeaderAction) => void;
 
 	// react-router
@@ -36,8 +34,7 @@ export enum BookHeaderAction {
 // case state
 
 const BookActionHeader = (props: PropTypes): JSX.Element => {
-	const { state, onAction } = props;
-
+	const { state, onAction, params} = props;
 	const history = useHistory();
 
 	const onClickBack = () => {
@@ -69,10 +66,16 @@ const BookActionHeader = (props: PropTypes): JSX.Element => {
 					</>
 				}
                 {
-					state === BookHeaderState.ContributionView &&
+					state === BookHeaderState.ContributionView && (
+                    !window.localStorage.getItem(`contribution-${params.contributionId}`) ?
 					<>
 						<button className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Vote </button>
 					</>
+                    :
+                    <>
+						<button disabled className="btn btn-primary" onClick={() => onAction(BookHeaderAction.Vote)}> Voted </button>
+					</>
+                    )
 				}
 			</div>
 		</div>

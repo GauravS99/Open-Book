@@ -40,6 +40,8 @@ const BookContribution = (props: PropTypes): JSX.Element => {
 	const { contribution, setContribution, author } = useFetchContribution(id);
 	const history = useHistory();
 
+    const [dummy, setDummy] = useState<any>(undefined);
+
 	if (!contribution || !author) {
 		return <div></div>;
 	}
@@ -64,7 +66,9 @@ const BookContribution = (props: PropTypes): JSX.Element => {
 				applyContribution();
 			}
 			else {
+                window.localStorage.setItem(`contribution-${contribution.id}`, 'true');
 				incrementVote();
+                setDummy(true);
 			}
 		}
 	};
@@ -72,13 +76,13 @@ const BookContribution = (props: PropTypes): JSX.Element => {
 	return (
 		<div className="content colour-4 h-100 rounded pb-3">
 			<div className='px-3 pt-3'>
-				<BookActionHeader state={BookHeaderState.ContributionView} onAction={onHeaderAction} />
+				<BookActionHeader state={BookHeaderState.ContributionView} onAction={onHeaderAction} params={{dummy, contributionId: contribution.id}}/>
 			</div>
 			<div>
 				<div className='p-3 bg-colour-4 text-dark row mx-3 contribution-container'>
 					<div className="col-3 rounded p-3 border border-dark">
 						<h5>
-							Contributer
+                            Contributor
                         </h5>
 						<hr />
 						<h6>{author.username}</h6>
