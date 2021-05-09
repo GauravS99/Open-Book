@@ -14,7 +14,7 @@ import Home from './pages/Home/Home';
 import BookEdit from './components/Book/BookEdit';
 
 import { createBrowserHistory } from 'history';
-import AuthService, { useFetchUser } from './services/authService';
+import AuthService, { useFetchUser, signOutUser } from './services/authService';
 
 import bookImg from './assets/open-book.png';
 
@@ -34,18 +34,28 @@ const App = (): JSX.Element => {
 							OpenBook
 						</Link>
 						<div>
-							<button className="auth-btn signup-btn">
-								<Link to="/signup">
-									Sign Up
-								</Link>
-							</button>
-							<button className="auth-btn signin-btn">
-								<Link to="/signin">
-									Sign In
-								</Link>
-							</button>
-							<span className="user-info">{user ? user.dbUser.username : ''}</span>
-							<span className="user-info">{user ? user.dbUser.points : ''}</span>
+							{
+								user
+									?
+									<>
+										<span className="user-info">{user.dbUser.username}</span>
+										<span className="user-info">{user.dbUser.points}</span>
+										<button className="auth-btn logout-btn" onClick={() => signOutUser()}>Log Out</button>
+									</>
+									:
+									<>
+										<button className="auth-btn signup-btn">
+											<Link to="/signup">
+												Sign Up
+											</Link>
+										</button>
+										<button className="auth-btn signin-btn">
+											<Link to="/signin">
+												Sign In
+											</Link>
+										</button>
+									</>
+							}
 						</div>
 					</div>
 				</div>

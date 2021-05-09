@@ -54,16 +54,19 @@ a.title:hover {
 	color: var(--main-bg-color);
 }
 
-/* Sign-in Button */
-.signin-btn {
+/* Sign-in & Logout Button */
+.signin-btn,
+.logout-btn {
 	background: black;
 }
 
-.signin-btn:hover {
+.signin-btn:hover,
+.logout-btn:hover {
 	filter: brightness(90%);
 }
 
-.signin-btn a {
+.signin-btn a,
+.logout-btn {
 	color: var(--main-bg-color);
 }
 

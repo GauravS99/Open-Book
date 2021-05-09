@@ -8,13 +8,13 @@ export const signUpUser = async (email: string, password: string, username: stri
 
 	const cred = await auth.createUserWithEmailAndPassword(email, password);
 
-	if(cred.user != null){
+	if (cred.user != null) {
 		await UserService.addUser(cred.user.uid, {
 			points: 0,
 			username
 		});
 	}
-	
+
 	console.log('user credentials', cred);
 };
 
@@ -24,12 +24,17 @@ export const signInUser = async (email: string, password: string) => {
 	console.log('user credentials', cred.user);
 };
 
+export const signOutUser = async () => {
+	await auth.signOut();
+	window.localStorage.clear();
+};
+
 const userKey = 'openbookuser';
 
 export default class AuthService {
-	static getLocalUser = () : AuthUser | undefined => {
+	static getLocalUser = (): AuthUser | undefined => {
 		const value = window.localStorage.getItem(userKey);
-		if(value){
+		if (value) {
 			return JSON.parse(value);
 		}
 
@@ -37,7 +42,7 @@ export default class AuthService {
 	}
 
 	static setLocalUser = (user: AuthUser | undefined) => {
-		if(!user){
+		if (!user) {
 			window.localStorage.removeItem(userKey);
 		}
 		window.localStorage.setItem(userKey, JSON.stringify(user));
@@ -45,13 +50,13 @@ export default class AuthService {
 }
 
 export const useFetchUser = () => {
-	const [user, setUser] = useState<AuthUser | undefined> (undefined);
+	const [user, setUser] = useState<AuthUser | undefined>(undefined);
 
 	useEffect(() => {
 		auth.onAuthStateChanged(async (firebaseUser) => {
 			console.log('onAuthStateChanged', firebaseUser);
 			let authUser: AuthUser | undefined;
-			if(firebaseUser){
+			if (firebaseUser) {
 				const dbUser = await UserService.getUser(firebaseUser.uid);
 				authUser = {
 					uid: firebaseUser.uid,
