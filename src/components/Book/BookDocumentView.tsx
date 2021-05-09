@@ -1,3 +1,4 @@
+import './Book.css';
 import React, { useState, useEffect } from 'react';
 import Book from '../../models/Book';
 import Edit from '../../models/Edit';
@@ -7,101 +8,97 @@ import ContributionService from '../../services/db/contributionService';
 import BookActionHeader, { BookHeaderAction, BookHeaderState } from './BookActionHeader';
 
 interface PropTypes {
-    book: Book | null;
+	book: Book | null;
 }
 
-const BookDocumentView = (props: PropTypes) : JSX.Element => {
-    const {book} = props;
+const BookDocumentView = (props: PropTypes): JSX.Element => {
+	const { book } = props;
 
-    if(!book){
-        return <div></div>;
-    }
-   
-    const bookText = book.text;
+	if (!book) {
+		return <div></div>;
+	}
 
-    const [state, setState] = useState(BookHeaderState.DocumentView);
-    const [editing, setEditing] = useState(false);
-    const [text, setText] = useState(bookText);
+	const bookText = book.text;
 
-    const onSubmitEdit = async () => {
-        const editableDiv = document.getElementById('editableBook');
-        if(editableDiv){
-            const value = editableDiv.textContent as string;
+	const [state, setState] = useState(BookHeaderState.DocumentView);
+	const [editing, setEditing] = useState(false);
+	const [text, setText] = useState(bookText);
 
-            // awdfawd
-            // awdfawdaw
-            const addition = value.substring(bookText.length); 
+	const onSubmitEdit = async () => {
+		const editableDiv = document.getElementById('editableBook');
+		if (editableDiv) {
+			const value = editableDiv.textContent as string;
 
-            // ASSUME all edits are contributions
+			// awdfawd
+			// awdfawdaw
+			const addition = value.substring(bookText.length);
 
-            const currentUser = AuthService.getLocalUser() as AuthUser;
+			// ASSUME all edits are contributions
 
-            await ContributionService.addContribution({
-                bookId: book.id as string,
-                authorId: currentUser.uid,
-                text: addition
-            });
+			const currentUser = AuthService.getLocalUser() as AuthUser;
 
-            setState(BookHeaderState.DocumentView);
-            setEditing(false);
+			await ContributionService.addContribution({
+				bookId: book.id as string,
+				authorId: currentUser.uid,
+				text: addition
+			});
 
-            editableDiv.textContent = bookText;
-            // TODO Thivagar we need to create a EditProposal object and send it to a 
-            // the EditService to submit the edit request to DB it should have the
-            // ids of the current user and book, and in EditService we need to add these
-            // as document references
+			setState(BookHeaderState.DocumentView);
+			setEditing(false);
 
-            // const edit: Edit = {
-            //     author: {
-                    
-            //     };
-            //     book: Book;
-            //     replace: string;
-            //     with: string;
-            //     previous_story: string;
-            //     new_story: string;
-            // };
-        }
-    };
+			editableDiv.textContent = bookText;
+			// TODO Thivagar we need to create a EditProposal object and send it to a 
+			// the EditService to submit the edit request to DB it should have the
+			// ids of the current user and book, and in EditService we need to add these
+			// as document references
 
-    const onHeaderAction = (action: BookHeaderAction) => {
-        if(action === BookHeaderAction.Edit){
-            setState(BookHeaderState.DocumentEdit);
-            setEditing(true);
-        }
-        else if(action === BookHeaderAction.Cancel){
-            setState(BookHeaderState.DocumentView);
-            setEditing(false);
-        }
-        else if(action === BookHeaderAction.Submit){
-            onSubmitEdit();
-        }
-    };
+			// const edit: Edit = {
+			//     author: {
 
-    return (
-        <div>
-            <div>
-                <BookActionHeader 
-                    state={ state }
-                    onAction={onHeaderAction}
-                />
-            </div>
-            <div>
-                <div className='p-3 bg-colour-5 text-dark mt-4'>
-                    <div className="text-center mb-4">
-                        <h4>{book.title}</h4>
-                    </div>
-                    {!editing ?
-                        <div className="p-2 rounded">{bookText}</div>
-                     :
-                     <div id="editableBook" className="border border-dark p-2 rounded" contentEditable="true">
-                        {text}
-                     </div>
-                    }
-                </div>
-            </div>
-        </div>
-    );
+			//     };
+			//     book: Book;
+			//     replace: string;
+			//     with: string;
+			//     previous_story: string;
+			//     new_story: string;
+			// };
+		}
+	};
+
+	const onHeaderAction = (action: BookHeaderAction) => {
+		if (action === BookHeaderAction.Edit) {
+			setState(BookHeaderState.DocumentEdit);
+			setEditing(true);
+		}
+		else if (action === BookHeaderAction.Cancel) {
+			setState(BookHeaderState.DocumentView);
+			setEditing(false);
+		}
+		else if (action === BookHeaderAction.Submit) {
+			onSubmitEdit();
+		}
+	};
+
+	return (
+		<div>
+			<BookActionHeader
+				state={state}
+				onAction={onHeaderAction}
+			/>
+			<div className='doc-container p-3 text-dark'>
+				<div className="text-center mb-4">
+					<h4>{book.title}</h4>
+				</div>
+				{!editing ?
+					<div className="p-2 rounded">{bookText}</div>
+					:
+					<div id="editableBook" className="border border-dark p-2 rounded" contentEditable="true">
+						{text}
+					</div>
+				}
+			</div>
+		</div>
+	);
 };
 
 export default BookDocumentView;
