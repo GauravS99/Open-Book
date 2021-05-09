@@ -46,10 +46,11 @@ export default class AuthService {
 	}
 
 	static setLocalUser = (user: AuthUser | undefined) => {
-		if (!user) {
-			window.localStorage.removeItem(userKey);
-		}
 		window.localStorage.setItem(userKey, JSON.stringify(user));
+	}
+
+	static removeLocalUser = () => {
+		window.localStorage.removeItem(userKey);
 	}
 }
 
@@ -71,6 +72,10 @@ export const useFetchUser = () => {
 
 				AuthService.setLocalUser(authUser);
 				setUser(authUser);
+			}
+			else{
+				AuthService.removeLocalUser();
+				setUser(undefined);
 			}
 		});
 	}, []);
